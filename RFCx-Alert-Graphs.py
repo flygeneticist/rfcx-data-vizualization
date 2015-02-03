@@ -42,8 +42,8 @@ weekday_map= {1:'MON', 2:'TUE', 3:'WED', 4:'THU',
               5:'FRI', 6:'SAT', 7:'SUN'}
 
 # re-defines the weekday label
-def weekday_label(x, wkdays=weekdays):
-    return wkdays[x-1]
+# def weekday_label(x, wkdays=weekdays):
+#     return wkdays[x-1]
 
 df['weekday'] = df['alert_datetime'].map(lambda x: x.isocalendar()[2])
 
@@ -72,10 +72,10 @@ df['day_night'] = df['hour'].map(lambda z: day_night(z))
 
 # Quick reference to unique lists of various columns
 types = sorted(list(set(df['sound_type'])))
-types2 = str(unique(df['sound_type']))
+# types2 = str(unique(df['sound_type']))
 guids = sorted(list(set(df['guid'])))
 dates = sorted(list(set(df['alert_datetime'])))
-
+wd = range(1,8)
 
 #### Create pivot tables of data
 # create pivot tables of data for plotting
