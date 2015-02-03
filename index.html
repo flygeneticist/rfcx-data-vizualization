@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script type="style" src="main.css"></script>
+    <script type="text/javascript" charset="utf-8" src="./scripts/d3.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./scripts/day_night.js"></script>
+  </head>
+  <body>
+    <h1>Test page for RFCx data vizualization</h1>
+    <!-- Chart toolbar allows user to adjust chart time-scales, export report, etc -->
+    <div class="toolbar"></div>
+    <!-- All dashboard charts fall under metrics div -->
+    <div class="metrics">
+      <!-- Setup the chart area's general settings -->
+      <script>
+        // d3.select("body").style("background-color", "black");
+        d3.json("data/SFID_guardian_arrays.json", day_night);
+      </script>
+      <!-- Each chart will get its own div block -->
+    </div>
+  </body>
+</html>
