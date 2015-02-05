@@ -60,9 +60,9 @@ def group_hours(y, hours=hours, step=step):
 df['hour'] = df['alert_datetime'].map(lambda y: group_hours(y.hour))
 
 
-# defines day vs night hours (night = 18:00-05:00)
+# defines day vs night hours (night = 20:00-06:00)
 def day_night(z):
-    if (z < 5 or z > 18):
+    if (z < 6 or z > 20):
         return 'night'
     else:
         return 'day'

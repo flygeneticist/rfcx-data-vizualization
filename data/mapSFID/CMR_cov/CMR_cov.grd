@@ -1,0 +1,27 @@
+[general] 
+creator=R package 'raster' 
+created= 2011-11-12 14:57:56 
+[georeference] 
+nrows= 1392 
+ncols= 948 
+xmin= 8.4 
+ymin= 1.6 
+xmax= 16.3 
+ymax= 13.2 
+projection= +proj=longlat +ellps=WGS84 
+[data] 
+datatype= INT1U 
+byteorder= little 
+nbands= 1 
+bandorder= BIL 
+categorical= FALSE 
+minvalue= 1 
+maxvalue= 22 
+nodatavalue= -9999 
+[legend] 
+legendtype=  
+values=  
+color=  
+[description] 
+layername= CMR_cov 
+history=  
