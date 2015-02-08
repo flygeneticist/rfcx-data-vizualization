@@ -29,6 +29,37 @@ json_obj = """
 ]
 """
 
+'''
+"01/23/2015 10:49:50",
+"01/23/2015 11:07:52",
+"01/23/2015 11:19:54",
+"01/23/2015 11:49:58",
+"01/23/2015 12:26:03",
+"01/23/2015 12:32:03",
+"01/23/2015 12:38:04",
+"01/23/2015 12:44:05",
+"01/23/2015 12:50:06",
+"01/23/2015 12:56:06",
+"01/23/2015 15:26:26",
+"01/23/2015 16:32:34",
+"01/23/2015 16:38:35",
+"01/23/2015 17:26:41",
+"01/23/2015 18:20:48",
+"01/23/2015 18:38:51",
+"01/23/2015 19:02:54",
+"01/23/2015 19:51:01",
+"01/23/2015 19:51:01",
+"01/23/2015 21:39:15",
+"01/24/2015 02:09:51",
+"01/24/2015 02:15:51",
+"01/24/2015 03:09:59",
+"01/24/2015 03:15:59",
+"01/24/2015 03:46:04",
+"01/24/2015 03:52:05",
+"01/24/2015 04:40:13",
+"01/24/2015 04:40:13",
+'''
+
 # Load the JSON data into a Pandas DataFrame
 data = json.loads(json_obj)
 df = pd.io.json.json_normalize(data)
@@ -163,51 +194,8 @@ fig = plt.figure(figsize=(10, 7.5))
 ax = fig.add_subplot(111)
 # set transparency
 a = 0.7
-ax = hr_pivot.plot(kind='bar', stacked=True, color=palette, legend=True, ax=ax, alpha=a,
-                    edgecolor='w', ylim=(0,max(tot_hr.values())))
-# Remove the plot frame lines
-ax = plt.subplot(111)
-ax.spines["top"].set_visible(False)
-ax.spines["bottom"].set_visible(False)
-ax.spines["right"].set_visible(False)
-ax.spines["left"].set_visible(False)
-# Ensure that the axis ticks only show up on the bottom and left of the plot.
-ax.get_xaxis().tick_bottom()
-ax.get_yaxis().tick_left()
-# Remove grid lines (dotted lines inside plot)
-ax.grid(False)
-# Remove plot frame
-ax.set_frame_on(False)
-# Pandas trick: remove weird dotted line on axis
-ax.lines[0].set_visible(False)
-# Customize title, set position, allow space on top of plot for title
-ax.set_title("", fontsize=26, alpha=a, ha='left')
-plt.subplots_adjust(top=0.9)
-ax.title.set_position((0,1.08))
-# Setup the legend labels properly
-patches, labels = ax.get_legend_handles_labels()
-# clean up auto-set labels from pivot tables
-labels = [e[1] for e in [str(l).replace("(","").replace(")","").split(", ") for l in labels]]
-ax.legend(patches, labels, loc='best')
-# Set y axis label, set label text
-ylab = 'Incidents Detected'
-ax.set_ylabel(ylab, fontsize=16, alpha=a, ha='center')
-# Set x axis label, set label text
-xlab = 'Time of Day (2 hours)'
-ax.set_xlabel(xlab, fontsize=16, alpha=a, ha='center')
-# Save figure as png
-plt.savefig('figures/alerts_by_hour.png', dpi=300)
-
-
-#### Graph 3: Alerts By Weekday
-# Create a figure of given size. Common sizes: (10, 7.5) and (12, 9)
-fig = plt.figure(figsize=(10, 7.5))
-# Add a subplot
-ax = fig.add_subplot(111)
-# set transparency
-a = 0.7
-ax = day_pivot.plot(kind='barh', stacked=True, color=palette, legend=True, ax=ax, alpha=a,
-                      edgecolor='w', xlim=(0,max(tot_day.values())))
+ax = hr_pivot.plot(kind='barh', stacked=True, color=palette, legend=True, ax=ax, alpha=a,
+                    edgecolor='w', xlim=(0,max(tot_hr.values())))
 # Remove the plot frame lines
 ax = plt.subplot(111)
 ax.spines["top"].set_visible(False)
@@ -236,12 +224,55 @@ ax.legend(patches, labels, loc='best')
 xlab = 'Incidents Detected'
 ax.set_xlabel(xlab, fontsize=16, alpha=a, ha='center')
 # Set y axis label, set label text
-ylab = 'Day of Week'
+ylab = 'Time of Day (2 hours)'
 ax.set_ylabel(ylab, fontsize=16, alpha=a, ha='center')
-ys = sorted(ax.get_yticks())
-ax.set_yticks(ys)
-ax.set_yticks([], minor=True)
-ax.set_yticklabels([weekday_map[d] for d in wd])
+# Save figure as png
+plt.savefig('figures/alerts_by_hour.png', dpi=300)
+
+
+#### Graph 3: Alerts By Weekday
+# Create a figure of given size. Common sizes: (10, 7.5) and (12, 9)
+fig = plt.figure(figsize=(10, 7.5))
+# Add a subplot
+ax = fig.add_subplot(111)
+# set transparency
+a = 0.7
+ax = day_pivot.plot(kind='bar', stacked=True, color=palette, legend=True, ax=ax, alpha=a,
+                      edgecolor='w', ylim=(0,max(tot_day.values())))
+# Remove the plot frame lines
+ax = plt.subplot(111)
+ax.spines["top"].set_visible(False)
+ax.spines["bottom"].set_visible(False)
+ax.spines["right"].set_visible(False)
+ax.spines["left"].set_visible(False)
+# Ensure that the axis ticks only show up on the bottom and left of the plot.
+ax.get_xaxis().tick_bottom()
+ax.get_yaxis().tick_left()
+# Remove grid lines (dotted lines inside plot)
+ax.grid(False)
+# Remove plot frame
+ax.set_frame_on(False)
+# Pandas trick: remove weird dotted line on axis
+ax.lines[0].set_visible(False)
+# Customize title, set position, allow space on top of plot for title
+ax.set_title("", fontsize=26, alpha=a, ha='left')
+plt.subplots_adjust(top=0.9)
+ax.title.set_position((0,1.08))
+# Setup the legend labels properly
+patches, labels = ax.get_legend_handles_labels()
+# clean up auto-set labels from pivot tables
+labels = [e[1] for e in [str(l).replace("(","").replace(")","").split(", ") for l in labels]]
+ax.legend(patches, labels, loc='best')
+# Set y axis label, set label text
+ylab = 'Incidents Detected'
+ax.set_ylabel(ylab, fontsize=16, alpha=a, ha='center')
+# Set x axis label, set label text
+xlab = 'Day of Week'
+ax.set_xlabel(xlab, fontsize=16, alpha=a, ha='center')
+xs = sorted(ax.get_xticks())
+ax.set_xticks(xs)
+ax.set_xticks([], minor=True)
+ax.set_xticklabels([weekday_map[d] for d in wd])
 # Save figure as png
 plt.savefig('figures/alerts_by_weekday.png', dpi=300)
 
