@@ -1,28 +1,14 @@
-h1 {
-    /*color:white;*/
-}
-
-div.chart {
+body {
     font-family:sans-serif;
     font-size:0.7em;
 }
 
-div.bar {
-    background-color:green;
-    /*color:white;*/
-    height:3em;
-    line-height:3em;
-    padding-right:1em;
-    margin-bottom:2px;
-    text-align:right;
+span {
+    float:left;
+    display: inline-block;
 }
 
-div.label {
-    height:3em;
-    line-height:3em;
-    padding-right:1em;
-    margin-bottom:2px;
-    float:left;
-    text-align:right;
-    /*color:white;*/
+#summary {
+    width: 300px;
+    height: 300px;
 }

@@ -7,17 +7,49 @@
     <script type="text/javascript" charset="utf-8" src="./scripts/day_night.js"></script>
   </head>
   <body>
-    <h1>Test page for RFCx data vizualization</h1>
-    <!-- Chart toolbar allows user to adjust chart time-scales, export report, etc -->
-    <div class="toolbar"></div>
-    <!-- All dashboard charts fall under metrics div -->
-    <div class="metrics">
-      <!-- Setup the chart area's general settings -->
-      <script>
-        // d3.select("body").style("background-color", "black");
-        d3.json("data/SFID_guardian_arrays.json", day_night);
-      </script>
-      <!-- Each chart will get its own div block -->
+    <h1>Test page for RFCx Data Report</h1>
+    <div class="main">
+      <div class='row'>
+        <div class="chart" id="summary">
+          <h3>SUMMARY BOX GOES HERE!</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <span class="chart" id="map"><img src="./figures/alerts_by_nightDay.png" width="800" height="800" border=1></span>
+
+        <span class="event_table">
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Detected Events</th>
+            </tr>
+            <script type='text/javascript'>
+              var times = [13,17,2,3,24,9,16,4,14,11]
+              var myTable='';
+              for(var i=0; i<10; i++){
+                if((times[i]>18)||(times[i]<5)){
+                  myTable+='<tr bgcolor="blue"><td>'
+                }
+                else {
+                  myTable+='<tr bgcolor="yellow"><td>'
+                }
+                myTable+='A'
+                myTable+='</td><td>'
+                myTable+='26.01.2015 '+times[i]+':00 - Camion - (<a href="#">Audio</a>)</td></tr>';
+              }
+              document.write(myTable);
+            </script>
+          </table>
+        </span>
+
+        <span class="chart" id="hourly"><img src="./figures/alerts_by_hour.png" width="400" height="400" border=1></span>
+
+        <span class="chart" id="daily"><img src="./figures/alerts_by_weekday.png" width="400" height="400" border=1></span>
+      </div>
+      <div class="row">
+        <span class="chart" id="daynight"><img src="./figures/alerts_by_nightDay.png" width="400" height="400" border=1></span>
+      </div>
     </div>
   </body>
 </html>
