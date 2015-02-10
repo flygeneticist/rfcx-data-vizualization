@@ -8,7 +8,15 @@ span {
     display: inline-block;
 }
 
-#summary {
-    width: 300px;
-    height: 300px;
+div.summary {
+    width: 400px;
+    height: 400px;
+    color: #ffffff;
+    background-color: #000000;
+    text-align: center;
+    vertical-align: center;
+}
+
+div.row {
+    margin-bottom: 5px;
 }
