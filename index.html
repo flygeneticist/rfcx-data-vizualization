@@ -15,7 +15,7 @@
             var st_date = '25.01.2015';
             var en_date = '31.01.2015';
             var wk_total = 95;
-            var wk_change = -0.050;
+            var wk_change = -10;
             if (wk_change < 0){
               // show green up symbol for lower alerts (ie. progress was made)
               var symb = "./assets/change_up.png";
@@ -26,7 +26,7 @@
             }
             document.write('<h4>'+st_date+" - "+en_date+'</h4>');
             document.write('<h2>'+wk_total+'</h2>');
-            document.write('<h2 style="color:'+chng_color+';"><img src='+symb+' width="25" height="25">&nbsp'+wk_change+'</h2>');
+            document.write('<h2 style="color:'+chng_color+';"><img src='+symb+' width="25" height="25">&nbsp'+(wk_change/wk_total).toPrecision(2)+'%</h2>');
           </script>
         </div>
       </div>
