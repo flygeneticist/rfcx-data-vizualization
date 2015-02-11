@@ -2,13 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script type="stylesheet" src="main.css"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css"></link>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css"></link>
   </head>
   <body>
     <h1>Test page for RFCx Data Report</h1>
-    <div class="main">
-      <div class='row'>
-        <div class="summary" style="width: 250px; height: 200px; text-align: center; color: #CECDCD; background-color: #3A3535; margin-bottom: 5px;" border=1>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3 summary" border=1>
           <h1>Total Alerts</h1>
           <script type="text/javascript">
             // TO DO: Get start end dates, alert totals, and change from data passed in.
@@ -18,10 +20,10 @@
             var wk_change = -10;
             if (wk_change < 0){
               // show green up symbol for lower alerts (ie. progress was made)
-              var symb = "./assets/change_up.png";
+              var symb = "assets/figures/change_up.png";
               var chng_color = "#18BA18";
             } else {
-              var symb = "./assets/change_down.png";
+              var symb = "assets/figures/change_down.png";
               var chng_color = "#E81E1E";
             }
             document.write('<h4>'+st_date+" - "+en_date+'</h4>');
@@ -32,18 +34,18 @@
       </div>
 
       <div class="row">
-        <span class="chart" id="map"><img src="./assets/Domaine_de_la_surveillance2.png" width="700" height="700" border=1></span>
-        <span class="event_table">
+        <span class="col-md-9" id="map"><img src="assets/figures/Domaine_de_la_surveillance2.png" width="700" height="700" border=1></span>
+        <span class="col-md-3">
           <table border=1>
             <tr>
               <th>ID</th>
               <th>Detected Events</th>
             </tr>
             <script type='text/javascript'>
-              var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-              var times = [13,17,2,3,24,9,16,4,14,11,12,15,3,23,11,8,6,12,1,14]
+              var alphabet = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz".split("");
+              var times = [13,17,2,3,24,9,16,4,14,11,12,15,3,23,11,8,6,12,1,14,13,17,2,3,24,9,16,4,14,11,12,15,3,23,11,8,6,12,1,14,13,17,2,3,24,9,16,4,14,11,12,15,3,23,11,8,6,12,1,14]
               var myTable='';
-              for(var i=0; i<20; i++){
+              for(var i=0; i<60; i++){
                 if((times[i]>18)||(times[i]<5)){
                   myTable+='<tr bgcolor="#486E88"><td>'
                 }
@@ -58,12 +60,20 @@
             </script>
           </table>
         </span>
-        <span class="chart" id="hourly"><img src="./figures/alerts_by_hour.png" width="400" height="400" border=1></span>
-        <span class="chart" id="daily"><img src="./figures/alerts_by_weekday.png" width="400" height="400" border=1></span>
-      </div>
+        <div class="row">
+          <div class="col-md-4">
+            <span id="hourly"><img src="assets/figures/alerts_by_hour.png" width="100%" height="100%" border=1></span>
+          </div>
+          <div class="col-md-4">
+            <span id="daily"><img src="assets/figures/alerts_by_weekday.png" width="100%" height="100%" border=1></span>
+          </div>
+        </div>
 
-      <div class="row">
-        <span class="chart" id="daynight"><img src="./figures/alerts_by_nightDay.png" width="400" height="400" border=1></span>
+        <div class="row">
+          <div class="col-md-4">
+            <span id="nightDay"><img src="assets/figures/alerts_by_nightDay.png" width="100%" height="100%" border=1></span>
+          </div>
+        </div>
       </div>
     </div>
   </body>
