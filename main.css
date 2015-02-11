@@ -13,3 +13,9 @@ div.summary {
 div.row {
     margin-bottom: 5px;
 }
+
+a {
+    text-decoration: none;
+    text-decoration-color: #3A3535;
+    color: #CECDCD;
+}
