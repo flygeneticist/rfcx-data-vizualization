@@ -8,7 +8,7 @@
   </head>
   <body>
     <h1>Test page for RFCx Data Report</h1>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-md-3 summary" border=1>
           <h1>Total Alerts</h1>
@@ -34,7 +34,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-9" id="map">
+        <div class="col-md-8" id="map">
           <img src="assets/figures/Domaine_de_la_surveillance2.png" width="750" height="700" border=1>
           <div class="row">
             <div class="col-md-6" id="hourly">
@@ -54,11 +54,10 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <table border=1>
+        <div class="col-md-4">
+          <table class="table-bordered">
             <tr>
-              <th>ID</th>
-              <th>Detected Events</th>
+              <th colspan="2"><h3>Detected Events</h3></th>
             </tr>
             <script type='text/javascript'>
               var alphabet = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz".split("");
@@ -66,10 +65,10 @@
               var myTable='';
               for(var i=0; i<60; i++){
                 if((times[i]>18)||(times[i]<5)){
-                  myTable+='<tr bgcolor="#486E88"><td>'
+                  myTable+='<tr class=".info"><td>'
                 }
                 else {
-                  myTable+='<tr bgcolor="#D4D26A"><td>'
+                  myTable+='<tr class=".warning"><td>'
                 }
                 myTable+=alphabet[i]
                 myTable+='</td><td>'
