@@ -55,7 +55,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <table class="table-bordered">
+          <table class="table table-bordered table-condensed">
             <tr>
               <th colspan="2"><h3>Detected Events</h3></th>
             </tr>
@@ -65,10 +65,10 @@
               var myTable='';
               for(var i=0; i<60; i++){
                 if((times[i]>18)||(times[i]<5)){
-                  myTable+='<tr class=".info"><td>'
+                  myTable+='<tr class="info"><td>'
                 }
                 else {
-                  myTable+='<tr class=".warning"><td>'
+                  myTable+='<tr class="warning"><td>'
                 }
                 myTable+=alphabet[i]
                 myTable+='</td><td>'
