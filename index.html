@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css"></link>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"></link>
     <link rel="stylesheet" type="text/css" href="assets/css/main.css"></link>
   </head>
@@ -13,17 +12,17 @@
           <h1>Total Alerts</h1>
           <script type="text/javascript">
             // TO DO: Get start end dates, alert totals, and change from data passed in.
-            var st_date = '25.01.2015';
-            var en_date = '31.01.2015';
-            var wk_total = 95;
-            var wk_change = -10;
+            var st_date='25.01.2015';
+            var en_date='31.01.2015';
+            var wk_total=95;
+            var wk_change=-10;
             if (wk_change < 0){
               // show green up symbol for lower alerts (ie. progress was made)
-              var symb = "assets/figures/change_up.png";
-              var chng_color = "#18BA18";
+              var symb="assets/figures/change_up.png";
+              var chng_color="#18BA18";
             } else {
-              var symb = "assets/figures/change_down.png";
-              var chng_color = "#E81E1E";
+              var symb="assets/figures/change_down.png";
+              var chng_color="#E81E1E";
             }
             document.write('<h4>'+st_date+" - "+en_date+'</h4>');
             document.write('<h2>'+wk_total+'</h2>');
@@ -31,7 +30,6 @@
           </script>
         </div>
       </div>
-
       <div class="row">
         <div class="col-md-8" id="map">
           <img src="assets/figures/SFID_domaine_highlighted.png" width="750" height="700" border=1>
@@ -43,7 +41,6 @@
               <img class="img-responsive" src="assets/figures/alerts_by_weekday.png">
             </div>
           </div>
-
           <div class="row">
             <div class="col-md-10" id="nightDay">
               <img class="img-responsive" src="assets/figures/alerts_by_nightDay.png">
@@ -56,17 +53,38 @@
               <th colspan="2"><h3>Detected Events</h3></th>
             </tr>
             <script type='text/javascript'>
-              var alphabet = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz".split("");
-              var times = [13,17,2,3,24,9,16,4,14,11,12,15,3,23,11,8,6,12,1,14,13,17,2,3,24,9,16,4,14,11,12,15,3,23,11,8,6,12,1,14,13,17,2,3,24,9,16,4,14,11,12,15,3,23,11,8,6,12,1,14]
+              // create lettering scheme for table items
+              function convertToNumberingScheme(number) {
+                var baseChar = ("A").charCodeAt(0);
+                var letters  = "";
+                do {
+                  number -= 1;
+                  letters = String.fromCharCode(baseChar + (number % 26)) + letters;
+                  number = (number / 26) >> 0;
+                } while(number>0);
+                return letters;
+              }
+
+              var data_len=50; // TO DO: get from JSON array length
+              var alphabet="abcdefghijklmnopqrstuvwxyz".split("");
+              var ids = [];
+              var times=[];
+              for (var x=1; x<=data_len; x++) {
+                // create fake times for table items
+                times.push(Math.floor(Math.random() * (24 - 1 + 1)) + 1);
+                // create ids for table items
+                ids.push(convertToNumberingScheme(x));
+              }
+
               var myTable='';
-              for(var i=0; i<60; i++){
+              for(var i=0; i<data_len; i++){
                 if((times[i]>18)||(times[i]<5)){
                   myTable+='<tr class="info"><td>'
                 }
                 else {
                   myTable+='<tr class="warning"><td>'
                 }
-                myTable+=alphabet[i]
+                myTable+=ids[i]
                 myTable+='</td><td>'
                 myTable+='26.01.2015 '+times[i]+':00 - Camion - (<a href="#">Audio</a>)</td></tr>';
               }
@@ -74,7 +92,6 @@
             </script>
           </table>
         </div>
-
       </div>
     </div>
   </body>
